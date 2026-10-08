@@ -1,11 +1,12 @@
-# Registro delle scoperte
+# Findings log
 
-Aggiungere voci append-only: data | area | scoperta | fonte | conseguenza documentale. Il log conserva la storia; i fatti correnti appartengono ai master di dominio.
+Add append-only entries: date | area | finding | source | documentation consequence. The log keeps history; current facts belong to the domain masters.
 
-| Data | Area | Scoperta | Fonte | Conseguenza documentale |
+| Date | Area | Finding | Source | Documentation consequence |
 |---|---|---|---|---|
-| 2026-09-29 | architettura | AD spezza attributi multivalore >1500 elementi in range (`member;range=0-1499`, ecc.), richiede loop lettura | `src/ldapClient.js` funzione `rangedSearch`, verificato contro comportamento AD documentato | Documentato pattern in 02-architecture/README.md sezione "Ranged attribute retrieval" |
-| 2026-09-29 | architettura | Risolvere N membri gruppo con N query singole è inefficiente; batch OR-filter su `distinguishedName` (chunk 200) risolve in 1 query per chunk | `src/adQueries.js` funzione `resolveUserDetails`, testato su gruppo di esempio con 140 membri | Documentato pattern "Batch DN resolution" in 02-architecture, flusso F4 in 03-flussi |
-| 2026-09-29 | operazioni | Header `Content-Disposition: attachment` su risposta JSON forzava download silenzioso browser, percepito da utente come "export vuoto" (non era un bug di dati, era UX) | `src/export.js` funzione `sendJSON`, riprodotto e risolto durante sviluppo | Documentato in 04-operations/README.md sezione troubleshooting, e regola F5 in 03-flussi |
-| 2026-09-29 | dominio AD | Account contractor possono avere suffisso `-ext` in `sAMAccountName` e `mail`; nel campione osservato non avevano OU dedicata e risultavano `objectClass=user` | Test diretto su gruppo di esempio con 140 membri | Documentato in 00-overview e Q-OU-EXT in open-questions.md |
-| 2026-09-29 | dominio AD | Utente standard può appartenere a 50+ gruppi (tecnici, SSO, organizzativi misti), non solo gruppi di team | Test diretto `getUser` su utente di esempio, campo `memberOf` | Documentato in flusso F2 03-flussi/README.md |
+| 2026-09-29 | architecture | AD splits multi-valued attributes with more than 1500 elements into ranges (`member;range=0-1499`, etc.), a read loop is required | `src/ldapClient.js` function `rangedSearch`, verified against documented AD behaviour | Pattern documented in 02-architecture/README.md section "Ranged attribute retrieval" |
+| 2026-09-29 | architecture | Resolving N group members with N single queries is inefficient; an OR filter on `distinguishedName` (chunk 200) resolves them in 1 query per chunk | `src/adQueries.js` function `resolveUserDetails`, tested on an example group with 140 members | Pattern "Batch DN resolution" documented in 02-architecture, flow F4 in 03-flows |
+| 2026-09-29 | operations | `Content-Disposition: attachment` header on a JSON response forced a silent browser download, perceived by the user as an "empty export" (not a data bug, a UX one) | `src/export.js` function `sendJSON`, reproduced and fixed during development | Documented in 04-operations/README.md troubleshooting section, and rule F5 in 03-flows |
+| 2026-09-29 | AD domain | Contractor accounts may have the suffix `-ext` in `sAMAccountName` and `mail`; in the observed sample they had no dedicated OU and were `objectClass=user` | Direct test on an example group with 140 members | Documented in 00-overview and Q-OU-EXT in open-questions.md |
+| 2026-09-29 | AD domain | A standard user can belong to 50+ groups (technical, SSO, mixed organizational), not only team groups | Direct `getUser` test on an example user, `memberOf` field | Documented in flow F2 03-flows/README.md |
+| 2026-10-08 | AD domain | The primary group of a user (e.g. `Domain Users`, `primaryGroupID=513`) is not stored in `member`/`memberOf`: the group showed 0 members and the user "no groups" although the ADUC console lists them | `ldapsearch`: `member` of `Domain Users` has 0 values while 4 users have `primaryGroupID=513`; ADUC screenshot | Rule R6 in 03-flows, pattern "Primary group" in 02-architecture; fixed in `getGroup`/`getUser` |

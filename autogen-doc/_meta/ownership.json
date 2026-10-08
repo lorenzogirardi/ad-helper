@@ -1,193 +1,193 @@
 {
   "schemaVersion": 1,
   "roles": {
-    "cartografo": {
-      "label": "Cartografo"
+    "cartographer": {
+      "label": "Cartographer"
     },
-    "curatore": {
-      "label": "Curatore delle evidenze"
+    "curator": {
+      "label": "Evidence curator"
     },
-    "redattore": {
-      "label": "Redattore business"
+    "business-writer": {
+      "label": "Business writer"
     },
-    "strumenti": {
-      "label": "Manutentore degli strumenti"
+    "tools-maintainer": {
+      "label": "Tools maintainer"
     },
-    "revisore": {
-      "label": "Revisore"
+    "reviewer": {
+      "label": "Reviewer"
     }
   },
   "externalSources": {
     "@code": {
-      "description": "Codice nella cartella superiore, escluso autogen-doc; provenienza in sources.json"
+      "description": "Code in the parent folder, excluding autogen-doc; provenance in sources.json"
     }
   },
   "folders": [
     {
       "path": ".",
-      "owner": "cartografo",
-      "scope": "Documentazione versionata insieme al codice"
+      "owner": "cartographer",
+      "scope": "Documentation versioned together with the code"
     },
     {
       "path": "00-overview",
-      "owner": "cartografo",
-      "scope": "Orientamento al dominio e ai confini"
+      "owner": "cartographer",
+      "scope": "Orientation to the domain and boundaries"
     },
     {
       "path": "_meta",
-      "owner": "cartografo",
-      "scope": "Governance, provenienza, domande e audit"
+      "owner": "cartographer",
+      "scope": "Governance, provenance, questions and audit"
     },
     {
       "path": "tools",
-      "owner": "strumenti",
-      "scope": "Strumenti permanenti di verifica e generazione"
+      "owner": "tools-maintainer",
+      "scope": "Permanent verification and generation tools"
     },
     {
       "path": "01-structure",
-      "owner": "cartografo",
-      "scope": "Inventario moduli, file, dipendenze, build"
+      "owner": "cartographer",
+      "scope": "Module, file, dependency and build inventory"
     },
     {
       "path": "02-architecture",
-      "owner": "cartografo",
-      "scope": "Responsabilità componenti, wiring, pattern AD specifici"
+      "owner": "cartographer",
+      "scope": "Component responsibilities, wiring, specific AD patterns"
     },
     {
-      "path": "03-flussi",
-      "owner": "cartografo",
-      "scope": "Flussi end-to-end e regole con ID stabili"
+      "path": "03-flows",
+      "owner": "cartographer",
+      "scope": "End-to-end flows and rules with stable IDs"
     },
     {
       "path": "04-operations",
-      "owner": "cartografo",
-      "scope": "Setup, deploy, troubleshooting operativo"
+      "owner": "cartographer",
+      "scope": "Setup, deploy, operational troubleshooting"
     }
   ],
   "files": [
     {
       "path": "_meta/methodology.md",
       "kind": "master",
-      "owner": "cartografo",
-      "scope": "Applicazione locale dei tre workflow",
+      "owner": "cartographer",
+      "scope": "Local application of the three workflows",
       "owns": [
         "governance:method"
       ],
       "upstream": [],
       "edit": "manual",
-      "editWhen": "Adattamento locale o upgrade del metodo",
-      "procedure": "Modificare con diff revisionato e riallineare istruzioni e comandi"
+      "editWhen": "Local adaptation or upgrade of the method",
+      "procedure": "Change with a reviewed diff and realign instructions and commands"
     },
     {
       "path": "_meta/open-questions.md",
       "kind": "master",
-      "owner": "cartografo",
-      "scope": "Domande, risposte e residui con ID stabili",
+      "owner": "cartographer",
+      "scope": "Questions, answers and residuals with stable IDs",
       "owns": [
         "governance:questions"
       ],
       "upstream": [],
       "edit": "manual",
-      "editWhen": "Emerge un dubbio o una fonte cambia la risposta",
-      "procedure": "Preservare ID, registrare evidenza e residuo, propagare link e riferimenti"
+      "editWhen": "A doubt emerges or a source changes the answer",
+      "procedure": "Preserve IDs, record evidence and residual, propagate links and references"
     },
     {
       "path": "_meta/ownership-catalog.md",
       "kind": "generated",
-      "owner": "strumenti",
-      "scope": "Catalogo leggibile derivato dal registro",
+      "owner": "tools-maintainer",
+      "scope": "Readable catalog derived from the registry",
       "owns": [],
       "upstream": [
         "_meta/ownership.json",
         "tools/verify-docs.cjs"
       ],
       "edit": "generated",
-      "editWhen": "Cambia il registro",
-      "procedure": "Eseguire verify-docs.cjs --docs autogen-doc --write-catalog dalla radice codice"
+      "editWhen": "The registry changes",
+      "procedure": "Run verify-docs.cjs --docs autogen-doc --write-catalog from the code root"
     },
     {
       "path": "_meta/ownership.json",
       "kind": "master",
-      "owner": "cartografo",
-      "scope": "Assegnazioni puntuali, scope e dipendenze",
+      "owner": "cartographer",
+      "scope": "Specific assignments, scope and dependencies",
       "owns": [
         "governance:ownership-registry"
       ],
       "upstream": [],
       "edit": "manual",
-      "editWhen": "File/cartella aggiunti, rimossi o riassegnati",
-      "procedure": "Assegnare owner/scope/upstream; rigenerare il catalogo ed eseguire il gate"
+      "editWhen": "File/folder added, removed or reassigned",
+      "procedure": "Assign owner/scope/upstream; regenerate the catalog and run the gate"
     },
     {
       "path": "_meta/ownership.md",
       "kind": "master",
-      "owner": "cartografo",
-      "scope": "Disciplina locale dei master e delle copie",
+      "owner": "cartographer",
+      "scope": "Local discipline for masters and copies",
       "owns": [
         "governance:ownership-policy"
       ],
       "upstream": [],
       "edit": "manual",
-      "editWhen": "Cambia il contratto di manutenzione",
-      "procedure": "Rivedere master/copie e aggiornare le assegnazioni interessate"
+      "editWhen": "The maintenance contract changes",
+      "procedure": "Review masters/copies and update the affected assignments"
     },
     {
       "path": "_meta/project.json",
       "kind": "master",
-      "owner": "cartografo",
-      "scope": "Identità progetto, versione skill e comandi verificati",
+      "owner": "cartographer",
+      "scope": "Project identity, skill version and verified commands",
       "owns": [
         "governance:project"
       ],
       "upstream": [],
       "edit": "manual",
-      "editWhen": "Cambia versione skill, revisione target o comando verificato",
-      "procedure": "Registrare valori osservati senza affermare review non eseguite"
+      "editWhen": "Skill version, target revision or verified command changes",
+      "procedure": "Record observed values without claiming reviews that were not performed"
     },
     {
       "path": "_meta/reading-log.md",
       "kind": "master",
-      "owner": "cartografo",
-      "scope": "Cronologia delle scoperte e delle fonti lette",
+      "owner": "cartographer",
+      "scope": "History of findings and sources read",
       "owns": [
         "audit:discoveries"
       ],
       "upstream": [],
       "edit": "manual",
-      "editWhen": "Nuova scoperta o rettifica",
-      "procedure": "Aggiungere data, fonte e conseguenza; non alterare registrazioni storiche"
+      "editWhen": "New finding or correction",
+      "procedure": "Add date, source and consequence; do not alter historical entries"
     },
     {
       "path": "_meta/review-status.json",
       "kind": "master",
-      "owner": "revisore",
-      "scope": "Stato corrente delle unità e riferimenti ai verdetti",
+      "owner": "reviewer",
+      "scope": "Current unit status and references to verdicts",
       "owns": [
         "review:current-status"
       ],
       "upstream": [],
       "edit": "manual",
-      "editWhen": "Review, nuovo contenuto o deriva delle fonti di una unità",
-      "procedure": "Aggiornare unità/revisione/limiti; validated solo con verbale indipendente; aggiungere i verbali upstream nel registro"
+      "editWhen": "Review, new content or source drift of a unit",
+      "procedure": "Update unit/revision/limits; validated only with an independent report; add the reports as upstream in the registry"
     },
     {
       "path": "_meta/scope.md",
       "kind": "master",
-      "owner": "cartografo",
-      "scope": "Perimetro di analisi e layer applicabili",
+      "owner": "cartographer",
+      "scope": "Analysis perimeter and applicable layers",
       "owns": [
         "governance:scope"
       ],
       "upstream": [],
       "edit": "manual",
-      "editWhen": "Cambia obiettivo, copertura o applicabilità dei layer",
-      "procedure": "Aggiornare inclusioni/esclusioni con motivo, senza duplicare lo stato review"
+      "editWhen": "Goal, coverage or layer applicability changes",
+      "procedure": "Update inclusions/exclusions with a reason, without duplicating the review status"
     },
     {
       "path": "_meta/sources.json",
       "kind": "master",
-      "owner": "curatore",
-      "scope": "Provenienza e disponibilità delle fonti",
+      "owner": "curator",
+      "scope": "Source provenance and availability",
       "owns": [
         "evidence:provenance"
       ],
@@ -195,14 +195,14 @@
         "@code"
       ],
       "edit": "manual",
-      "editWhen": "Fonte acquisita, rimossa o cambiata",
-      "procedure": "Qualificare tipo, revisione, ambiente e hash; riconciliare i consumatori"
+      "editWhen": "Source acquired, removed or changed",
+      "procedure": "Qualify type, revision, environment and hash; reconcile consumers"
     },
     {
       "path": "00-overview/README.md",
       "kind": "master",
-      "owner": "cartografo",
-      "scope": "Orientamento al contesto e ai confini del progetto",
+      "owner": "cartographer",
+      "scope": "Orientation to the project context and boundaries",
       "owns": [
         "overview:context"
       ],
@@ -210,53 +210,53 @@
         "@code"
       ],
       "edit": "manual",
-      "editWhen": "Ricognizione iniziale o cambia il contesto",
-      "procedure": "Leggere fonti, documentare confini e propagare verso la navigazione"
+      "editWhen": "Initial survey or the context changes",
+      "procedure": "Read sources, document boundaries and propagate to navigation"
     },
     {
       "path": "AGENTS.md",
       "kind": "master",
-      "owner": "cartografo",
-      "scope": "Istruzioni operative locali per agenti",
+      "owner": "cartographer",
+      "scope": "Local operating instructions for agents",
       "owns": [
         "governance:agent-instructions"
       ],
       "upstream": [],
       "edit": "manual",
-      "editWhen": "Cambiano istruzioni operative locali",
-      "procedure": "Riconciliare col metodo adottato e revisionare le istruzioni"
+      "editWhen": "Local operating instructions change",
+      "procedure": "Reconcile with the adopted method and review the instructions"
     },
     {
       "path": "CHANGELOG.md",
       "kind": "master",
-      "owner": "cartografo",
-      "scope": "Cronologia delle modifiche documentali",
+      "owner": "cartographer",
+      "scope": "History of documentation changes",
       "owns": [
         "audit:changes"
       ],
       "upstream": [],
       "edit": "manual",
-      "editWhen": "Cambiamento documentale sostanziale",
-      "procedure": "Aggiungere voce con diff esatto, verifiche e limiti; non riscrivere lo storico"
+      "editWhen": "Substantial documentation change",
+      "procedure": "Add an entry with the exact diff, checks and limits; do not rewrite history"
     },
     {
       "path": "README.md",
       "kind": "navigation",
-      "owner": "cartografo",
-      "scope": "Percorso di lettura della documentazione",
+      "owner": "cartographer",
+      "scope": "Documentation reading path",
       "owns": [
         "navigation:root"
       ],
       "upstream": [],
       "edit": "manual",
-      "editWhen": "Cambia il percorso di lettura o la struttura",
-      "procedure": "Aggiornare link e mappa senza duplicare stati o regole di dominio"
+      "editWhen": "The reading path or the structure changes",
+      "procedure": "Update links and map without duplicating statuses or domain rules"
     },
     {
       "path": "01-structure/README.md",
       "kind": "master",
-      "owner": "cartografo",
-      "scope": "Inventario file, moduli, dipendenze, entrypoint, build",
+      "owner": "cartographer",
+      "scope": "Inventory of files, modules, dependencies, entrypoint, build",
       "owns": [
         "structure:inventory"
       ],
@@ -264,14 +264,14 @@
         "@code"
       ],
       "edit": "manual",
-      "editWhen": "Aggiunta/rimozione modulo o cambia dipendenza",
-      "procedure": "Verificare package.json, Dockerfile, layout cartelle; aggiornare tabella moduli"
+      "editWhen": "Module added/removed or dependency changes",
+      "procedure": "Check package.json, Dockerfile, folder layout; update the modules table"
     },
     {
       "path": "02-architecture/README.md",
       "kind": "master",
-      "owner": "cartografo",
-      "scope": "Responsabilità componenti, wiring, pattern AD (ranged retrieval, batch resolution, UAC, DN parsing)",
+      "owner": "cartographer",
+      "scope": "Component responsibilities, wiring, AD patterns (ranged retrieval, batch resolution, UAC, DN parsing, primary group)",
       "owns": [
         "architecture:components",
         "architecture:ad-patterns"
@@ -281,14 +281,14 @@
         "01-structure/README.md"
       ],
       "edit": "manual",
-      "editWhen": "Cambia responsabilità modulo o pattern implementativo AD",
-      "procedure": "Leggere src/*.js, tracciare wiring reale, non dedurre da nome file"
+      "editWhen": "Module responsibility or AD implementation pattern changes",
+      "procedure": "Read src/*.js, trace the real wiring, do not infer from the file name"
     },
     {
-      "path": "03-flussi/README.md",
+      "path": "03-flows/README.md",
       "kind": "master",
-      "owner": "cartografo",
-      "scope": "Flussi ricerca/dettaglio/export end-to-end con ID stabili, regole",
+      "owner": "cartographer",
+      "scope": "End-to-end search/detail/export flows with stable IDs, rules",
       "owns": [
         "flows:search",
         "flows:detail",
@@ -304,14 +304,14 @@
         "02-architecture/README.md"
       ],
       "edit": "manual",
-      "editWhen": "Cambia comportamento flusso o regola",
-      "procedure": "Tracciare ingresso->servizi->persistenza/effetti->esito; aggiornare ID stabili, non riciclare"
+      "editWhen": "Flow behaviour or rule changes",
+      "procedure": "Trace entry->services->persistence/effects->outcome; update stable IDs, do not recycle"
     },
     {
       "path": "04-operations/README.md",
       "kind": "master",
-      "owner": "cartografo",
-      "scope": "Setup, config env, troubleshooting, deploy Docker, monitoring",
+      "owner": "cartographer",
+      "scope": "Setup, env config, troubleshooting, Docker deploy, monitoring",
       "owns": [
         "operations:setup",
         "operations:troubleshooting",
@@ -322,21 +322,21 @@
         "01-structure/README.md"
       ],
       "edit": "manual",
-      "editWhen": "Cambia procedura setup/deploy o nuovo problema noto",
-      "procedure": "Verificare comandi eseguiti realmente, non inventare procedura"
+      "editWhen": "Setup/deploy procedure changes or new known problem",
+      "procedure": "Check commands that were actually run, do not invent a procedure"
     },
     {
       "path": "tools/verify-docs.cjs",
       "kind": "tool",
-      "owner": "strumenti",
-      "scope": "Verificatore strutturale e generazione catalogo",
+      "owner": "tools-maintainer",
+      "scope": "Structural verifier and catalog generation",
       "owns": [
         "tool:ownership-verifier"
       ],
       "upstream": [],
       "edit": "manual",
-      "editWhen": "Cambia il contratto strutturale o versione del tool",
-      "procedure": "Applicare upgrade revisionato, testare casi validi e negativi, rigenerare catalogo"
+      "editWhen": "The structural contract or the tool version changes",
+      "procedure": "Apply a reviewed upgrade, test valid and negative cases, regenerate the catalog"
     }
   ]
 }

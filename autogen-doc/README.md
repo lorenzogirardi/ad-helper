@@ -1,35 +1,35 @@
-# Documentazione del progetto — AD Helper
+# Project documentation - AD Helper
 
-Stato: layer 0-4 documentati (orientamento, struttura, architettura, flussi, operazioni). Layer 5 (business) omesso — motivo in `_meta/scope.md`. In attesa di review indipendente (`in-review`).
+Status: layers 0-4 documented (orientation, structure, architecture, flows, operations). Layer 5 (business) omitted, reason in `_meta/scope.md`. Waiting for independent review (`in-review`).
 
-Il codice è nella cartella superiore. `autogen-doc/` contiene master curati, governance e strumenti; gli output eventualmente generati saranno dichiarati nel registro.
+The code lives in the parent folder. `autogen-doc/` contains curated masters, governance and tools; any generated outputs will be declared in the registry.
 
-## Percorso di lettura
+## Reading path
 
-**Per capire cos'è e a chi serve:** [Orientamento](00-overview/README.md)
+**To understand what it is and who it is for:** [Overview](00-overview/README.md)
 
-**Per orientarsi nel codice:** [Struttura progetto](01-structure/README.md) — moduli, file, dipendenze
+**To find your way around the code:** [Project structure](01-structure/README.md): modules, files, dependencies
 
-**Per capire come funziona internamente:** [Architettura](02-architecture/README.md) — responsabilità componenti, pattern AD (ranged retrieval, batch resolution, UAC decoding, DN parsing)
+**To understand how it works internally:** [Architecture](02-architecture/README.md): component responsibilities, AD patterns (ranged retrieval, batch resolution, UAC decoding, DN parsing, primary group)
 
-**Per capire i comportamenti end-to-end:** [Flussi](03-flussi/README.md) — ricerca utente/gruppo, dettaglio, export, regole con ID stabili
+**To understand end-to-end behaviour:** [Flows](03-flows/README.md): user/group search, detail, export, rules with stable IDs
 
-**Per fare setup/deploy/debug:** [Operazioni](04-operations/README.md) — env var, troubleshooting, Docker
+**To set up/deploy/debug:** [Operations](04-operations/README.md): env vars, troubleshooting, Docker
 
 **Governance:**
-- [Perimetro e copertura](_meta/scope.md): cosa è incluso, escluso o ancora non letto.
-- [Domande aperte](_meta/open-questions.md): dubbi con ID e residuo.
-- [Stato corrente delle review](_meta/review-status.json): leggere perimetro e verbale prima di usare una conclusione.
-- [Catalogo ownership](_meta/ownership-catalog.md): dove correggere un'informazione e quali copie aggiornare.
-- [Metodo locale](_meta/methodology.md), [istruzioni agenti](AGENTS.md), [changelog](CHANGELOG.md).
+- [Scope and coverage](_meta/scope.md): what is included, excluded or not yet read.
+- [Open questions](_meta/open-questions.md): doubts with ID and residual.
+- [Current review status](_meta/review-status.json): read perimeter and report before relying on a conclusion.
+- [Ownership catalog](_meta/ownership-catalog.md): where to fix a piece of information and which copies to update.
+- [Local method](_meta/methodology.md), [agent instructions](AGENTS.md), [changelog](CHANGELOG.md).
 
-Layer 5 (business/varianti) non applicabile: progetto è tool IT interno, no varianti tenant/paese/canale.
+Layer 5 (business/variants) does not apply: the project is an internal IT tool, with no tenant/country/channel variants.
 
-## Verifica dalla radice del codice
+## Verify from the code root
 
 ```text
 node autogen-doc/tools/verify-docs.cjs --docs autogen-doc --write-catalog
 node autogen-doc/tools/verify-docs.cjs --docs autogen-doc
 ```
 
-Il primo comando aggiorna solo il catalogo dalle assegnazioni esplicite del registro. Un esito positivo non significa che il contenuto sia stato revisionato.
+The first command only updates the catalog from the explicit assignments in the registry. A positive result does not mean the content has been reviewed.

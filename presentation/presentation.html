@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Documentazione AD Helper — Metodo e Applicazione</title>
+    <title>AD Helper Documentation: Method and Application</title>
     <style>
   * {
     box-sizing: border-box;
@@ -296,42 +296,42 @@
 </head>
 <body>
 
-<!-- SLIDE 1: Copertina -->
+<!-- SLIDE 1: Cover -->
 <div class="slide">
   <div class="slide-content">
     <h1 class="center">AD Helper</h1>
-    <p class="subtitle center">Web UI read-only per Active Directory</p>
+    <p class="subtitle center">Read-only web UI for Active Directory</p>
     <div class="center" style="margin-top: 48px;">
-      <span class="badge badge-blue">Contestualizzazione</span>
-      <span class="badge badge-purple">Metodo</span>
-      <span class="badge badge-green">Applicazione</span>
+      <span class="badge badge-blue">Context</span>
+      <span class="badge badge-purple">Method</span>
+      <span class="badge badge-green">Application</span>
       <span class="badge badge-orange">Review</span>
     </div>
   </div>
 </div>
 
-<!-- SLIDE 2: Il problema -->
+<!-- SLIDE 2: The problem -->
 <div class="slide">
-  <h2>Il problema</h2>
-  <h3>Utente e vincoli</h3>
+  <h2>The problem</h2>
+  <h3>User and constraints</h3>
   <ul>
-    <li>Active Directory aziendale esistente</li>
-    <li>Mac senza client LDAP comodo</li>
-    <li>Workflow manuale via <code>ldapsearch</code> da terminale</li>
+    <li>Existing corporate Active Directory</li>
+    <li>Mac without a handy LDAP client</li>
+    <li>Manual workflow with <code>ldapsearch</code> from the terminal</li>
   </ul>
-  <h3>Requisiti funzionali</h3>
+  <h3>Functional requirements</h3>
   <ul>
-    <li>Cercare utenti per nome, <code>sAMAccountName</code>, email</li>
-    <li>Vedere OU path, <code>memberOf</code>, stato attivo/disabilitato</li>
-    <li>Cercare gruppi e membri (gruppi oltre i 1500 membri)</li>
+    <li>Search users by name, <code>sAMAccountName</code>, email</li>
+    <li>See OU path, <code>memberOf</code>, active/disabled status</li>
+    <li>Search groups and members (groups with more than 1500 members)</li>
     <li>Export CSV/JSON</li>
-    <li>Solo lettura, Docker, niente login utente</li>
+    <li>Read-only, Docker, no user login</li>
   </ul>
 </div>
 
-<!-- SLIDE 3: Stack tecnico -->
+<!-- SLIDE 3: Tech stack -->
 <div class="slide">
-  <h2>Stack tecnico</h2>
+  <h2>Tech stack</h2>
   <div class="architecture-box">
     <div class="arch-item">
       <h4>Backend</h4>
@@ -339,7 +339,7 @@
     </div>
     <div class="arch-item">
       <h4>Frontend</h4>
-      <p>Vanilla HTML/JS, zero dipendenze</p>
+      <p>Vanilla HTML/JS, zero dependencies</p>
     </div>
     <div class="arch-item">
       <h4>Deploy</h4>
@@ -347,25 +347,25 @@
     </div>
     <div class="arch-item">
       <h4>Auth</h4>
-      <p>Bind LDAP con service account</p>
+      <p>LDAP bind with a normal account</p>
     </div>
   </div>
   <div class="dl">
-    <dt>Linguaggio</dt><dd>JavaScript (ES2020)</dd>
-    <dt>Porte</dt><dd>host 127.0.0.1:3080 → container 3000</dd>
-    <dt>Persistenza</dt><dd>Stateless, nessuna cache</dd>
-    <dt>Limite AD</dt><dd>Ranged retrieval per attributi >1500 valori</dd>
+    <dt>Language</dt><dd>JavaScript (ES2020)</dd>
+    <dt>Ports</dt><dd>host 127.0.0.1:3080 → container 3000</dd>
+    <dt>Persistence</dt><dd>Stateless, no cache</dd>
+    <dt>AD limit</dt><dd>Ranged retrieval for attributes with >1500 values</dd>
   </div>
 </div>
 
-<!-- SLIDE 4: Metodo -->
+<!-- SLIDE 4: Method -->
 <div class="slide">
-  <h2>Metodo: documentation-skill + Diátaxis</h2>
-  <h3>Quadranti</h3>
+  <h2>Method: documentation-skill + Diátaxis</h2>
+  <h3>Quadrants</h3>
   <div class="diataxis-grid">
     <div class="diataxis-item">
       <h4><span class="badge badge-blue">Tutorial</span></h4>
-      <p>Learning-oriented: "Primo avvio"</p>
+      <p>Learning-oriented: "First start"</p>
     </div>
     <div class="diataxis-item">
       <h4><span class="badge badge-purple">How-to</span></h4>
@@ -373,7 +373,7 @@
     </div>
     <div class="diataxis-item">
       <h4><span class="badge badge-green">Reference</span></h4>
-      <p>Information-oriented: architettura, limiti, timeout</p>
+      <p>Information-oriented: architecture, limits, timeouts</p>
     </div>
     <div class="diataxis-item">
       <h4><span class="badge badge-orange">Explanation</span></h4>
@@ -382,15 +382,15 @@
   </div>
 </div>
 
-<!-- SLIDE 5: Struttura documento -->
+<!-- SLIDE 5: Document structure -->
 <div class="slide">
-  <h2>Struttura documento</h2>
+  <h2>Document structure</h2>
   <pre><code>autogen-doc/
 ├── README.md
 ├── 00-overview/README.md
 ├── 01-structure/README.md
 ├── 02-architecture/README.md
-├── 03-flussi/README.md
+├── 03-flows/README.md
 ├── 04-operations/README.md
 ├── _meta/
 │   ├── project.json
@@ -406,53 +406,53 @@
 ├── tools/verify-docs.cjs
 ├── CHANGELOG.md
 └── AGENTS.md</code></pre>
-  <p>Ogni layer serve un'audience specifica: overview per orientamento, structure per sviluppatori, architecture per integratori, flows per tester, operations per SRE.</p>
+  <p>Each layer serves a specific audience: overview for orientation, structure for developers, architecture for integrators, flows for testers, operations for SRE.</p>
 </div>
 
-<!-- SLIDE 6: Metadati -->
+<!-- SLIDE 6: Metadata -->
 <div class="slide">
-  <h2>Metadati e governance</h2>
+  <h2>Metadata and governance</h2>
   <div class="meta-layer">
     <h4>Sources</h4>
     <ul>
       <li><code>src/</code>, <code>public/</code>, Dockerfile, compose, .env.example</li>
-      <li>Runtime test, AD schema observations</li>
+      <li>Runtime tests, AD schema observations</li>
     </ul>
   </div>
   <div class="meta-layer">
     <h4>Ownership</h4>
     <ul>
-      <li>Ruoli per file (<code>backend</code>, <code>frontend</code>, <code>docs</code>)</li>
-      <li>Registro verificato da <code>verify-docs.cjs</code></li>
+      <li>Roles per file (<code>backend</code>, <code>frontend</code>, <code>docs</code>)</li>
+      <li>Registry checked by <code>verify-docs.cjs</code></li>
     </ul>
   </div>
   <div class="meta-layer">
     <h4>Review status</h4>
     <ul>
-      <li>Stato: <code>in-review</code> fino a validazione indipendente</li>
-      <li>Rule: mai auto-validare — review esterno richiesta</li>
+      <li>Status: <code>in-review</code> until independent validation</li>
+      <li>Rule: never self-validate, an external review is required</li>
     </ul>
   </div>
 </div>
 
 <!-- SLIDE 7: Process -->
 <div class="slide">
-  <h2>Processo di documentazione</h2>
+  <h2>Documentation process</h2>
   <div class="timeline-box">
     <div class="timeline-step">
       <div class="timeline-num">1</div>
       <h4>Bootstrap</h4>
-      <p>Skill genera struttura e meta</p>
+      <p>Skill generates structure and meta</p>
     </div>
     <div class="timeline-step">
       <div class="timeline-num">2</div>
       <h4>Authoring</h4>
-      <p>Scrittura layer 0–4</p>
+      <p>Writing layers 0-4</p>
     </div>
     <div class="timeline-step">
       <div class="timeline-num">3</div>
       <h4>Scan</h4>
-      <p>Rimozione path e dati personali</p>
+      <p>Removal of paths and personal data</p>
     </div>
     <div class="timeline-step">
       <div class="timeline-num">4</div>
@@ -462,70 +462,70 @@
     <div class="timeline-step">
       <div class="timeline-num">5</div>
       <h4>Review</h4>
-      <p>Agente indipendente</p>
+      <p>Independent agent</p>
     </div>
   </div>
-  <p><strong>Regole applicate:</strong> niente segreti, niente PII, niente path assoluti locale, ownership per ruolo, status solo da review esterna.</p>
+  <p><strong>Rules applied:</strong> no secrets, no PII, no local absolute paths, ownership by role, status only from an external review.</p>
 </div>
 
 <!-- SLIDE 8: Review -->
 <div class="slide">
-  <h2>Review indipendente: findings</h2>
+  <h2>Independent review: findings</h2>
   <div class="fix-grid">
     <div class="fix-item">
-      <h4>Timeout LDAP errato</h4>
-      <p>Doc diceva default infinito → corretto: <code>timeout: 15000ms</code>, <code>connectTimeout: 10000ms</code></p>
+      <h4>Wrong LDAP timeout</h4>
+      <p>Docs said infinite default → fixed: <code>timeout: 15000ms</code>, <code>connectTimeout: 10000ms</code></p>
     </div>
     <div class="fix-item">
-      <h4>Porta 3080 wording</h4>
-      <p>"PORT override" → corretto: Compose mappa host 127.0.0.1:3080 su container 3000</p>
+      <h4>Port 3080 wording</h4>
+      <p>"PORT override" → fixed: Compose maps host 127.0.0.1:3080 to container 3000</p>
     </div>
     <div class="fix-item">
-      <h4>Dati personali e specifici</h4>
-      <p>Rimossi nomi, domini, gruppi reali, password di esempio → placeholder generici</p>
+      <h4>Personal and specific data</h4>
+      <p>Removed names, domains, real groups, example passwords → generic placeholders</p>
     </div>
     <div class="fix-item">
       <h4>Diátaxis label</h4>
-      <p>Primo setup → <code>## Tutorial: primo avvio</code></p>
+      <p>First setup → <code>## Tutorial: first start</code></p>
     </div>
     <div class="fix-item">
       <h4>Roadmap in Reference</h4>
-      <p>Sezione "Future" → spostata in <code>open-questions.md</code></p>
+      <p>"Future" section → moved to <code>open-questions.md</code></p>
     </div>
   </div>
 </div>
 
-<!-- SLIDE 8b: Seconda tornata -->
+<!-- SLIDE 8b: Second round -->
 <div class="slide">
-  <h2>Review indipendente: seconda tornata</h2>
+  <h2>Independent review: second round</h2>
   <div class="fix-grid">
     <div class="fix-item">
-      <h4>Chunk ranged retrieval</h4>
-      <p>Doc diceva range da 1500 → corretto: <code>pageSize = 1000</code>, <code>member;range=0-999</code>, <code>1000-1999</code>, …</p>
+      <h4>Ranged retrieval chunk</h4>
+      <p>Docs said range of 1500 → fixed: <code>pageSize = 1000</code>, <code>member;range=0-999</code>, <code>1000-1999</code>, …</p>
     </div>
     <div class="fix-item">
-      <h4>Conteggi righe obsoleti</h4>
-      <p>Tabella moduli riallineata a <code>wc -l</code> reale dei sorgenti</p>
+      <h4>Stale line counts</h4>
+      <p>Modules table realigned to the real <code>wc -l</code> of the sources</p>
     </div>
     <div class="fix-item">
-      <h4>Requisito non qualificato</h4>
-      <p>LDAPS in produzione → decisione da confermare (<code>Q-TLS</code>), non requisito implementato</p>
+      <h4>Unqualified requirement</h4>
+      <p>LDAPS in production → decision to confirm (<code>Q-TLS</code>), not an implemented requirement</p>
     </div>
     <div class="fix-item">
-      <h4>Limite risultati</h4>
-      <p>"default ~1500" → dipende dal server, non imposto dal codice</p>
+      <h4>Result limit</h4>
+      <p>"default ~1500" → depends on the server, not imposed by the code</p>
     </div>
   </div>
-  <p><strong>Lezione:</strong> ogni affermazione numerica va verificata contro il sorgente, non contro la memoria del comportamento AD.</p>
+  <p><strong>Lesson:</strong> every numeric claim must be checked against the source, not against memory of AD behaviour.</p>
 </div>
 
 <!-- SLIDE 9: Tools -->
 <div class="slide">
   <h2>Tooling</h2>
   <ul>
-    <li><code>verify-docs.cjs</code>: ownership registry check (PASS 19 file, 8 folder)</li>
-    <li><code>grep -RI</code>: scan path/segreto/personal data</li>
-    <li>Agente indipendente: factual correctness, Diátaxis, privacy</li>
+    <li><code>verify-docs.cjs</code>: ownership registry check (PASS 19 files, 8 folders)</li>
+    <li><code>grep -RI</code>: scan for paths/secrets/personal data</li>
+    <li>Independent agent: factual correctness, Diátaxis, privacy</li>
   </ul>
   <pre><code>node autogen-doc/tools/verify-docs.cjs --docs autogen-doc --write-catalog
 {
@@ -534,39 +534,39 @@
   "folders": 8,
   "errors": []
 }</code></pre>
-  <pre><code>grep -RInE '&lt;dominio-reale&gt;|&lt;nome-reale&gt;|changeme|/Users/|/home/|C:\\' autogen-doc
+  <pre><code>grep -RInE '&lt;real-domain&gt;|&lt;real-name&gt;|changeme|/Users/|/home/|C:\\' autogen-doc
 ---exit: 1  # zero hits</code></pre>
 </div>
 
 <!-- SLIDE 10: Lesson -->
 <div class="slide">
-  <h2>Cosa abbiamo imparato</h2>
+  <h2>What we learned</h2>
   <ul>
-    <li><strong>Diátaxis</strong> guida la struttura, evita il "monolite wiki"</li>
-    <li><strong>Meta-layers</strong> rendono la doc manutenibile e verificabile</li>
-    <li><strong>Ownership per ruolo</strong> non per nome — no blame, no rot</li>
-    <li><strong>Review indipendente</strong> è obbligatoria: io scrivo, un altro verifica</li>
-    <li><strong>Privacy by default</strong>: niente nomi, niente domini interni, niente password di esempio</li>
+    <li><strong>Diátaxis</strong> drives the structure, avoids the "monolithic wiki"</li>
+    <li><strong>Meta-layers</strong> make the docs maintainable and verifiable</li>
+    <li><strong>Ownership by role</strong>, not by name: no blame, no rot</li>
+    <li><strong>Independent review</strong> is mandatory: one writes, another verifies</li>
+    <li><strong>Privacy by default</strong>: no names, no internal domains, no example passwords</li>
   </ul>
 </div>
 
 <!-- SLIDE 11: Next -->
 <div class="slide">
-  <h2>Prossimi passi</h2>
+  <h2>Next steps</h2>
   <ul>
-    <li>Terza review indipendente dopo seconda tornata di fix</li>
-    <li>Se APPROVED: <code>review-status.json → validated</code></li>
-    <li>Considerare LDAPS + cert validation per produzione</li>
-    <li>Valutare cache (Q-CACHE) se ricerche frequenti</li>
-    <li>Testare <code>rangedSearch</code> su gruppo reale con >1500 membri</li>
+    <li>Third independent review after the second round of fixes</li>
+    <li>If APPROVED: <code>review-status.json → validated</code></li>
+    <li>Consider LDAPS + cert validation for production</li>
+    <li>Evaluate a cache (Q-CACHE) if searches are frequent</li>
+    <li>Test <code>rangedSearch</code> on a real group with >1500 members</li>
   </ul>
 </div>
 
-<!-- SLIDE 12: Fine -->
+<!-- SLIDE 12: End -->
 <div class="slide">
   <div class="slide-content">
-    <h1 class="center">Fine</h1>
-    <p class="subtitle center">Documentazione generata con documentation-skill, organizzata secondo Diátaxis, verificata da agente indipendente.</p>
+    <h1 class="center">The end</h1>
+    <p class="subtitle center">Documentation generated with documentation-skill, organized according to Diátaxis, checked by an independent agent.</p>
     <div class="center" style="margin-top: 48px;">
       <code style="font-size: 14px;">autogen-doc/</code>
     </div>

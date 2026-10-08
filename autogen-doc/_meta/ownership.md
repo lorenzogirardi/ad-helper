@@ -1,13 +1,13 @@
-# Disciplina di ownership
+# Ownership discipline
 
-Owner significa ruolo. Cartografo: modello tecnico e struttura; Curatore delle evidenze: fonti e censimenti; Redattore business: traduzione business e scenari; Manutentore degli strumenti: parser/checker/generatori; Revisore: verdetti indipendenti. Un solo owner operativo per file; nessun nome personale.
+Owner means role. Cartographer: technical model and structure; Evidence curator: sources and surveys; Business writer: business translation and scenarios; Tools maintainer: parsers/checkers/generators; Reviewer: independent verdicts. One operational owner per file; no personal names.
 
-Il registro ownership.json possiede assegnazioni, scope, dipendenze e procedure; ownership-catalog.md ne è la vista generata. Ogni file/cartella deve essere classificato; non assegnare automaticamente i nuovi file solo dalla posizione.
+The ownership.json registry owns assignments, scope, dependencies and procedures; ownership-catalog.md is its generated view. Every file/folder must be classified; do not automatically assign new files just from their position.
 
-Distinguere fonte probatoria, master documentale e propagazione. Codice, configurazione versionata, snapshot e runtime provano tesi diverse. Le copie non possiedono il valore replicato. Per file `mixed` dichiarare campi manuali e derivati in `fields`; un output `generated` non possiede fatti.
+Distinguish evidentiary source, documentation master and propagation. Code, versioned configuration, snapshots and runtime prove different claims. Copies do not own the replicated value. For `mixed` files declare manual and derived fields in `fields`; a `generated` output owns no facts.
 
-Stato corrente delle unità: review-status.json. Provenienza delle fonti: sources.json. Perimetro: scope.md. Domande: open-questions.md. Scoperte: reading-log.md. Modifiche: CHANGELOG.md. Questi registri non sostituiscono i master di dominio né le fonti probatorie.
+Current unit status: review-status.json. Source provenance: sources.json. Perimeter: scope.md. Questions: open-questions.md. Findings: reading-log.md. Changes: CHANGELOG.md. These registries do not replace the domain masters or the evidentiary sources.
 
-Inventari curati, report calcolati, hash storici e baseline approvate hanno procedure distinte. Non aggiornare una baseline per mascherare deriva; riesaminare prima. Seguire consumatori diretti/transitivi e cercare anche le occorrenze manuali. Il grafo è di derivazione, non un elenco di ogni hyperlink.
+Curated inventories, computed reports, historical hashes and approved baselines have distinct procedures. Do not update a baseline to hide drift; investigate first. Follow direct/transitive consumers and also look for manual occurrences. The graph is a derivation graph, not a list of every hyperlink.
 
-Per file nuovi aggiornare il registro prima del catalogo. Il gate verifica copertura e unicità degli scope dichiarati, non la verità o unicità semantica delle frasi. Scratch e backup restano esterni; gli archivi sono storici congelati, non fonte dello stato attuale.
+For new files update the registry before the catalog. The gate verifies coverage and uniqueness of declared scopes, not the truth or semantic uniqueness of sentences. Scratch files and backups stay external; archives are frozen history, not a source of the current state.

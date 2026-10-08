@@ -40,7 +40,7 @@ userForm.addEventListener('submit', async (e) => {
   const res = await fetch(`/api/users/search?q=${encodeURIComponent(q)}`);
   const data = await res.json();
   if (!res.ok) {
-    alert(data.error || 'Errore ricerca utenti');
+    alert(data.error || 'User search failed');
     return;
   }
 
@@ -59,7 +59,7 @@ function renderUserResults(users, truncated) {
     tr.innerHTML = `
       <td>${userDisplay}</td>
       <td>${escapeHTML(u.ou)}</td>
-      <td class="${u.disabled ? 'badge-disabled' : 'badge-enabled'}">${u.disabled ? 'Disabilitato' : 'Attivo'}</td>
+      <td class="${u.disabled ? 'badge-disabled' : 'badge-enabled'}">${u.disabled ? 'Disabled' : 'Active'}</td>
     `;
     tr.addEventListener('click', () => loadUserDetail(u.dn));
     userTbody.appendChild(tr);
@@ -71,28 +71,28 @@ async function loadUserDetail(dn) {
   const res = await fetch(`/api/users/${encodeURIComponent(dn)}`);
   const u = await res.json();
   if (!res.ok) {
-    alert(u.error || 'Errore caricamento utente');
+    alert(u.error || 'Could not load user');
     return;
   }
 
   const groupChips = u.groups
     .map((g) => `<span class="chip" data-dn="${escapeHTML(g.dn)}">${escapeHTML(g.cn)}</span>`)
-    .join('') || '<span class="section-title">Nessun gruppo</span>';
+    .join('') || '<span class="section-title">No groups</span>';
 
   userDetail.innerHTML = `
-    <h2>${escapeHTML(u.displayName)} ${u.disabled ? '<span class="badge-disabled">(disabilitato)</span>' : ''}</h2>
+    <h2>${escapeHTML(u.displayName)} ${u.disabled ? '<span class="badge-disabled">(disabled)</span>' : ''}</h2>
     <dl class="detail-grid">
       <dt>sAMAccountName</dt><dd>${escapeHTML(u.sAMAccountName)}</dd>
       <dt>Email</dt><dd>${escapeHTML(u.mail)}</dd>
-      <dt>Telefono</dt><dd>${escapeHTML(u.telephoneNumber)}</dd>
-      <dt>Titolo</dt><dd>${escapeHTML(u.title)}</dd>
-      <dt>Dipartimento</dt><dd>${escapeHTML(u.department)}</dd>
-      <dt>Azienda</dt><dd>${escapeHTML(u.company)}</dd>
+      <dt>Phone</dt><dd>${escapeHTML(u.telephoneNumber)}</dd>
+      <dt>Title</dt><dd>${escapeHTML(u.title)}</dd>
+      <dt>Department</dt><dd>${escapeHTML(u.department)}</dd>
+      <dt>Company</dt><dd>${escapeHTML(u.company)}</dd>
       <dt>OU</dt><dd>${escapeHTML(u.ou)}</dd>
-      <dt>Creato il</dt><dd>${escapeHTML(u.whenCreated)}</dd>
+      <dt>Created</dt><dd>${escapeHTML(u.whenCreated)}</dd>
       <dt>DN</dt><dd style="word-break: break-all;">${escapeHTML(u.dn)}</dd>
     </dl>
-    <div class="section-title">Membro di (${u.groups.length})</div>
+    <div class="section-title">Member of (${u.groups.length})</div>
     <div class="chip-list">${groupChips}</div>
   `;
   userDetail.classList.remove('hidden');
@@ -124,7 +124,7 @@ groupForm.addEventListener('submit', async (e) => {
   const res = await fetch(`/api/groups/search?q=${encodeURIComponent(q)}`);
   const data = await res.json();
   if (!res.ok) {
-    alert(data.error || 'Errore ricerca gruppi');
+    alert(data.error || 'Group search failed');
     return;
   }
 
@@ -154,7 +154,7 @@ async function loadGroupDetail(dn) {
   const res = await fetch(`/api/groups/${encodeURIComponent(dn)}`);
   const g = await res.json();
   if (!res.ok) {
-    alert(g.error || 'Errore caricamento gruppo');
+    alert(g.error || 'Could not load group');
     return;
   }
 
@@ -172,21 +172,21 @@ async function loadGroupDetail(dn) {
   groupDetail.innerHTML = `
     <h2>${escapeHTML(g.cn)}</h2>
     <dl class="detail-grid">
-      <dt>Descrizione</dt><dd>${escapeHTML(g.description)}</dd>
+      <dt>Description</dt><dd>${escapeHTML(g.description)}</dd>
       <dt>OU</dt><dd>${escapeHTML(g.ou)}</dd>
       <dt>DN</dt><dd style="word-break: break-all;">${escapeHTML(g.dn)}</dd>
     </dl>
-    <div class="section-title">Membri (${g.members.length})</div>
+    <div class="section-title">Members (${g.members.length})</div>
     <div class="results-actions" style="margin-bottom: 12px;">
-      <a href="/api/groups/${encodeURIComponent(g.dn)}/members.csv" target="_blank">Esporta CSV</a>
-      <a href="/api/groups/${encodeURIComponent(g.dn)}/members.json" target="_blank">Esporta JSON</a>
+      <a href="/api/groups/${encodeURIComponent(g.dn)}/members.csv" target="_blank">Export CSV</a>
+      <a href="/api/groups/${encodeURIComponent(g.dn)}/members.json" target="_blank">Export JSON</a>
     </div>
     ${
       g.members.length > 0
         ? `<table class="results-table" style="margin-top: 12px;">
         <thead>
           <tr>
-            <th>Nome</th>
+            <th>Name</th>
             <th>Email</th>
           </tr>
         </thead>
@@ -194,7 +194,7 @@ async function loadGroupDetail(dn) {
           ${memberRows}
         </tbody>
       </table>`
-        : '<p style="color: var(--text-dim);">Nessun membro</p>'
+        : '<p style="color: var(--text-dim);">No members</p>'
     }
   `;
   groupDetail.classList.remove('hidden');

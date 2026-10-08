@@ -1,46 +1,47 @@
-# AD Helper — Consultazione LDAP in lettura
+# AD Helper - Read-only LDAP lookup
 
-**Proposito:** web UI leggera per interrogare Active Directory aziendale da Mac/Windows+WSL, senza client LDAP da terminale.
+**Purpose:** lightweight web UI to query the company Active Directory from Mac/Windows+WSL, without a terminal LDAP client. It relies on the fact that, by default, every authenticated domain user can read users, groups and memberships (see the root README), so group membership can be checked without opening tickets.
 
-**Scope:** lettura pura — cerca utenti, gruppi, mostra appartenenze, OU, dettagli, export CSV/JSON. No write/modify.
+**Scope:** pure reading: search users and groups, show memberships, OU, details, CSV/JSON export. No write/modify.
 
-**Stack verificato:**
+**Verified stack:**
 - Backend: Node.js 20 + Express 4 + ldapjs 3
-- Frontend: vanilla HTML/JS, nessun framework
-- Deploy: Docker + Compose su `node:20-alpine`
-- Autenticazione: bind LDAP con service account, configurato via env var, nessun login utente nell'app
+- Frontend: vanilla HTML/JS, no framework
+- Deploy: Docker + Compose on `node:20-alpine`
+- Authentication: LDAP bind with a normal account, configured via env vars, no user login in the app
 
-**Pubblico:**
-- Admin IT: consultazione rapida AD senza ldapsearch da terminale
-- Team tecnico: verifica appartenenze gruppo, status utente
+**Audience:**
+- IT admins: quick AD lookup without a terminal ldapsearch
+- Technical team: check group membership, user status
 
-**Link principali:**
-- [Struttura progetto](../01-structure/README.md) — moduli, file
-- [Architettura](../02-architecture/README.md) — responsabilità, AD patterns
-- [Flussi](../03-flussi/README.md) — ricerca, export
-- [Operazioni](../04-operations/README.md) — setup, deploy Docker
+**Main links:**
+- [Project structure](../01-structure/README.md): modules, files
+- [Architecture](../02-architecture/README.md): responsibilities, AD patterns
+- [Flows](../03-flows/README.md): search, export
+- [Operations](../04-operations/README.md): setup, Docker deploy
 
-**Glossario locale:**
-- **DN (Distinguished Name):** path completo utente/gruppo in LDAP, es. `CN=Jane Doe,OU=IT,OU=Accounts,DC=ad,DC=example,DC=internal`
-- **OU:** organizational unit = divisione/team/ufficio nella gerarchia AD
-- **sAMAccountName:** username pre-Windows-2000, es. `jane.doe`
-- **memberOf:** attributo lista, contiene DN dei gruppi a cui l'utente appartiene
-- **member:** attributo lista su gruppo, contiene DN degli utenti/gruppi nel gruppo
-- **userAccountControl (UAC):** bitmask, bit 2 = account disabilitato
+**Local glossary:**
+- **DN (Distinguished Name):** full path of a user/group in LDAP, e.g. `CN=Jane Doe,OU=IT,OU=Accounts,DC=ad,DC=example,DC=internal`
+- **OU:** organizational unit = division/team/office in the AD hierarchy
+- **sAMAccountName:** pre-Windows-2000 username, e.g. `jane.doe`
+- **memberOf:** list attribute, contains the DNs of the groups the user belongs to
+- **member:** list attribute on a group, contains the DNs of the users/groups in the group
+- **Primary group:** group referenced by the user's `primaryGroupID` (typically `Domain Users`, RID 513); it is not listed in `member`/`memberOf`
+- **userAccountControl (UAC):** bitmask, bit 2 = account disabled
 
-**Limitazioni dichiarate:**
-- Legge da un solo base DN configurato (non multi-forest)
-- No LDAPS certificato (MVP su LDAP plain, TLS skip-verify per test)
-- Limite risultati: dipende dal server LDAP (spesso 1500), non un default imposto dal codice; gestito con flag `truncated`
-- Nessuna cache, ogni ricerca interroga il server
-- Protetto da network (bind 127.0.0.1) non da autenticazione app
+**Declared limitations:**
+- Reads from a single configured base DN (not multi-forest)
+- No certificate-validated LDAPS in the MVP (plain LDAP, TLS skip-verify for tests)
+- Result limit: depends on the LDAP server (often 1500), not a default imposed by the code; handled with the `truncated` flag
+- No cache, every search queries the server
+- Protected by network (bind 127.0.0.1), not by app authentication
 
-**Versione skill:** 0.1.0  
-**Documento letto:** 2026-09-29
+**Skill version:** 0.1.0  
+**Document read:** 2026-09-29
 
-## Domande aperte
-| ID | Priorità | Stato | Domanda | Evidenza |
+## Open questions
+| ID | Priority | Status | Question | Evidence |
 |---|---|---|---|---|
-| Q-OU-EXT | media | OPEN | Account `-ext` (contractor) hanno OU uguale a persona? | Testato: account contractor `-ext` osservato con OU standard, non OU separato |
-| Q-TLS | bassa | EXTERNAL | Produzione richiede LDAPS + cert? | Decisione cliente, non nel perimetro MVP |
-| Q-CACHE | bassa | EXTERNAL | Cache risultati ricerca? | Proposta futura, no per MVP |
+| Q-OU-EXT | medium | OPEN | Do `-ext` (contractor) accounts have the same OU as a person? | Tested: an observed contractor `-ext` account had a standard OU, not a separate one |
+| Q-TLS | low | EXTERNAL | Does production require LDAPS + cert? | Customer decision, not in the MVP perimeter |
+| Q-CACHE | low | EXTERNAL | Cache search results? | Future proposal, not for the MVP |

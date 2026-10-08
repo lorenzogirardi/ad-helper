@@ -1,48 +1,48 @@
-# Scope documentazione
+# Documentation scope
 
-**Obiettivo:** descrivere architettura, responsabilità moduli, flussi, pattern AD specifici, setup operativo. No feature roadmap o decisioni future non approvate.
+**Goal:** describe architecture, module responsibilities, flows, specific AD patterns and operational setup. No feature roadmap or unapproved future decisions.
 
-**Pubblico:** team sviluppo, admin IT deployment, manutentore futuro. Non end-user (no UI guide).
+**Audience:** development team, deployment IT admins, future maintainer. Not end users (see the root README for the user guide).
 
-**Layer completati:**
-- 0 Orientamento: contesto, glossario, stack
-- 1 Struttura: inventario moduli, grafo, build
-- 2 Architettura: responsabilità, wiring, AD pattern
-- 3 Flussi: ricerca, dettaglio, export end-to-end
-- 4 Operazioni: setup, troubleshoot, deploy
+**Completed layers:**
+- 0 Orientation: context, glossary, stack
+- 1 Structure: module inventory, graph, build
+- 2 Architecture: responsibilities, wiring, AD patterns
+- 3 Flows: search, detail, end-to-end export
+- 4 Operations: setup, troubleshooting, deploy
 
-**Layer omessi (non pertinenti):**
-- 5 Business: no varianti tenant/paese, no decisioni business fuori scope (solo setup IT)
+**Omitted layers (not relevant):**
+- 5 Business: no tenant/country variants, no business decisions outside scope (IT setup only)
 
-**Perimetro del codice:**
-- Include: backend Node.js, frontend vanilla, Docker, config
-- Escludi: scambi AD interni (query dettagli utenti già in doc), migrazione da precedenti tool
+**Code perimeter:**
+- Include: Node.js backend, vanilla frontend, Docker, config
+- Exclude: internal AD exchanges (user query details already in the docs), migration from previous tools
 
-**Limiti dichiarati:**
+**Declared limits:**
 - Single base DN (no forest)
-- LDAP plain MVP (no LDAPS MVP)
-- No cache (fresh query ogni volta)
-- No custom timeout (ldapjs default)
-- Protetto da network (127.0.0.1 only) non autenticazione app
+- Plain LDAP in the MVP (no LDAPS in the MVP)
+- No cache (fresh query every time)
+- No custom timeout beyond the ones set in `ldapClient.js`
+- Protected by network (127.0.0.1 only), not by app authentication
 
-**Verifiche eseguite:**
-- Lettura codice fonte completa
-- Functional test: ricerca utente, ricerca gruppo, dettaglio gruppo + batch resolve, export CSV/JSON
-- Schema AD osservato: email format, OU pattern, contractor `-ext` account
-- Performance batch resolution: 140 membri < 2s
+**Checks performed:**
+- Complete reading of the source code
+- Functional tests: user search, group search, group detail + batch resolve, CSV/JSON export
+- Observed AD schema: email format, OU pattern, contractor `-ext` accounts
+- Batch resolution performance: 140 members < 2s
 
-**Verifiche NON eseguite (fuori scope):**
-- Load test scalabilità
+**Checks NOT performed (out of scope):**
+- Scalability load test
 - LDAPS + cert validation
 - Multi-forest AD
 - Compliance/audit
 - Penetration test
 
-**Domande aperte:**
-- Q-OU-EXT: contractor OU? (Testato: same OU, no separate)
-- Q-TLS: Produzione LDAPS? (EXTERNAL decision)
-- Q-CACHE: cache per ricerche frequenti? (EXTERNAL backlog)
+**Open questions:**
+- Q-OU-EXT: contractor OU? (Tested: same OU, no separate one)
+- Q-TLS: LDAPS in production? (EXTERNAL decision)
+- Q-CACHE: cache for frequent searches? (EXTERNAL backlog)
 
-**Stato documentazione:** not-analyzed (ready for independent review)
+**Documentation status:** not-analyzed (ready for independent review)
 
-**Data scope:** 2026-09-29
+**Scope date:** 2026-09-29

@@ -1,19 +1,19 @@
-# Metodo locale
+# Local method
 
-Adottato da documentation-skill, versione in project.json. Questo documento applica il metodo al progetto; gli aggiornamenti della skill richiedono un diff revisionato e non sovrascrivono automaticamente questa cartella.
+Adopted from documentation-skill, version in project.json. This document applies the method to the project; skill updates require a reviewed diff and never overwrite this folder automatically.
 
-## Tre percorsi
+## Three paths
 
-**Creare:** censire fonti e confini → assegnare master → documentare orientamento, struttura, componenti/dati, flussi, varianti e business pertinenti → review di dominio e trasversale. Un layer nuovo può correggere quelli precedenti.
+**Create:** survey sources and boundaries -> assign masters -> document orientation, structure, components/data, flows, variants and relevant business -> domain and cross-cutting review. A new layer may correct the previous ones.
 
-**Aggiornare:** individuare delta dalla revisione documentata → master e dipendenze → correggere sorgenti/copie → check contenuto → rigenerazione → review indipendente → log e stato aggiornati. Per dataset, copertura entità × campo × ogni luogo che lo afferma, con residui espliciti.
+**Update:** identify the delta from the documented revision -> masters and dependencies -> fix sources/copies -> content check -> regeneration -> independent review -> logs and status updated. For datasets, coverage of entity × field × every place that states it, with explicit residuals.
 
-**Review:** in sola lettura su master e output; riaprire fonti, cercare controesempi e contraddizioni tra layer. Produrre verbale con rilievi, perimetro, controlli, revisione e limiti. Correzioni implementate da autore diverso dal reviewer finale.
+**Review:** read-only on masters and outputs; reopen the sources, look for counterexamples and contradictions between layers. Produce a report with findings, perimeter, checks, revision and limits. Corrections are implemented by an author other than the final reviewer.
 
-## Evidenze e completamento
+## Evidence and completion
 
-Citare file relativo alla radice del codice, simbolo e righe alla revisione esaminata. Snapshot/configurazioni riportano fonte, ambiente e data/hash se conosciuti. Separare fatto statico, dato persistito, inferenza e runtime; nessun risultato di un sistema remoto dedotto dalla sola chiamata.
+Cite the file relative to the code root, symbol and lines at the examined revision. Snapshots/configurations report source, environment and date/hash when known. Keep static fact, persisted data, inference and runtime separate; never deduce the result of a remote system from the call alone.
 
-Una modifica è completa quando tutte le copie pertinenti sono coerenti, i gate effettivamente applicabili passano, esiste un verdetto indipendente, domande e navigazione sono aggiornate e i log descrivono il diff reale. Senza review indipendente il contenuto resta `in-review`, anche con checker verdi.
+A change is complete when all relevant copies are consistent, the gates that actually apply pass, an independent verdict exists, questions and navigation are updated and the logs describe the real diff. Without independent review the content stays `in-review`, even with green checkers.
 
-Con deploy frequenti aggiornare per cambiamento significativo/PR, non per evento. Annotare separatamente commit documentato e snapshot ambientali. I comandi specifici verificati del progetto appartengono a project.json; non registrarli come eseguiti senza averli provati.
+With frequent deploys, update per significant change/PR, not per event. Annotate the documented commit and the environment snapshots separately. The project's verified specific commands belong in project.json; do not record them as executed without having run them.

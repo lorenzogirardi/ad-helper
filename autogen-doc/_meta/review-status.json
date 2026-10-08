@@ -9,7 +9,7 @@
       "status": "in-review",
       "sourceRevision": "HEAD",
       "reviewRef": null,
-      "limits": "Analisi single-author; review indipendente non ancora eseguita | 2026-09-30: fix post-review applicati e auto-verificati dall autore (line count, pageSize 1000, Q-TLS, limite risultati, backlog, scan privacy, verifier PASS); tentativi di review indipendente falliti per errore infrastruttura agenti: resta in-review"
+      "limits": "Single-author analysis; independent review not yet performed | 2026-09-30: post-review fixes applied and self-verified by the author (line count, pageSize 1000, Q-TLS, result limit, backlog, privacy scan, verifier PASS); attempts at independent review failed because of an agent infrastructure error: stays in-review"
     },
     {
       "id": "structure",
@@ -19,7 +19,7 @@
       "status": "in-review",
       "sourceRevision": "HEAD",
       "reviewRef": null,
-      "limits": "Analisi single-author; review indipendente non ancora eseguita | 2026-09-30: fix post-review applicati e auto-verificati dall autore (line count, pageSize 1000, Q-TLS, limite risultati, backlog, scan privacy, verifier PASS); tentativi di review indipendente falliti per errore infrastruttura agenti: resta in-review"
+      "limits": "Single-author analysis; independent review not yet performed | 2026-09-30: post-review fixes applied and self-verified by the author (line count, pageSize 1000, Q-TLS, result limit, backlog, privacy scan, verifier PASS); attempts at independent review failed because of an agent infrastructure error: stays in-review"
     },
     {
       "id": "architecture",
@@ -29,17 +29,17 @@
       "status": "in-review",
       "sourceRevision": "HEAD",
       "reviewRef": null,
-      "limits": "Analisi single-author; review indipendente non ancora eseguita. Performance batch resolution stimata, non load-tested | 2026-09-30: fix post-review applicati e auto-verificati dall autore (line count, pageSize 1000, Q-TLS, limite risultati, backlog, scan privacy, verifier PASS); tentativi di review indipendente falliti per errore infrastruttura agenti: resta in-review"
+      "limits": "Single-author analysis; independent review not yet performed. Batch resolution performance estimated, not load-tested | 2026-09-30: post-review fixes applied and self-verified by the author (line count, pageSize 1000, Q-TLS, result limit, backlog, privacy scan, verifier PASS); attempts at independent review failed because of an agent infrastructure error: stays in-review"
     },
     {
       "id": "flows",
       "paths": [
-        "03-flussi/README.md"
+        "03-flows/README.md"
       ],
       "status": "in-review",
       "sourceRevision": "HEAD",
       "reviewRef": null,
-      "limits": "Analisi single-author; scenari verificati manualmente contro AD reale ma non automatizzati come test suite | 2026-09-30: fix post-review applicati e auto-verificati dall autore (line count, pageSize 1000, Q-TLS, limite risultati, backlog, scan privacy, verifier PASS); tentativi di review indipendente falliti per errore infrastruttura agenti: resta in-review"
+      "limits": "Single-author analysis; scenarios verified manually against a real AD but not automated as a test suite | 2026-09-30: post-review fixes applied and self-verified by the author (line count, pageSize 1000, Q-TLS, result limit, backlog, privacy scan, verifier PASS); attempts at independent review failed because of an agent infrastructure error: stays in-review"
     },
     {
       "id": "operations",
@@ -49,7 +49,7 @@
       "status": "in-review",
       "sourceRevision": "HEAD",
       "reviewRef": null,
-      "limits": "Troubleshooting basato su problemi effettivamente riscontrati durante sviluppo; non copertura esaustiva di tutti i possibili errori LDAP | 2026-09-30: fix post-review applicati e auto-verificati dall autore (line count, pageSize 1000, Q-TLS, limite risultati, backlog, scan privacy, verifier PASS); tentativi di review indipendente falliti per errore infrastruttura agenti: resta in-review"
+      "limits": "Troubleshooting based on problems actually met during development; not an exhaustive coverage of every possible LDAP error | 2026-09-30: post-review fixes applied and self-verified by the author (line count, pageSize 1000, Q-TLS, result limit, backlog, privacy scan, verifier PASS); attempts at independent review failed because of an agent infrastructure error: stays in-review"
     }
   ]
 }

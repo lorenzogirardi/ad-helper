@@ -1,12 +1,12 @@
-# Istruzioni per autogen-doc
+# Instructions for autogen-doc
 
-Prima di modificare: leggere README, `_meta/project.json`, `_meta/scope.md`, `_meta/methodology.md`, `_meta/ownership.json` e le domande pertinenti. Applicare la versione di documentation-skill registrata nel progetto quando disponibile. Le istruzioni del repository e il perimetro autorizzato restano prevalenti.
+Before editing: read the README, `_meta/project.json`, `_meta/scope.md`, `_meta/methodology.md`, `_meta/ownership.json` and the relevant open questions. Apply the documentation-skill version recorded in the project when available. Repository instructions and the authorized perimeter always prevail.
 
-- Individuare master e ruolo prima di editare; niente owner nominativi. I campi derivati e gli output non si correggono a mano.
-- Separare codice, configurazione versionata, snapshot ed evidenza runtime. Non pubblicare secret o dati personali.
-- Delegare analisi profonde per sottodomini con fonti complete e file di scrittura disgiunti. Review da un agente diverso dall'autore; se indisponibile lasciare `in-review` e dichiarare il limite.
-- Propagare verso layer precedenti e successivi, incluse sintesi, JSON, scenari, domande, aggregati e output. Dataset nuovi: matrice entità × campo × consumatore e confronto dei valori, non sola ricerca per keyword.
-- Stato corrente delle review solo in `_meta/review-status.json`; le pagine rimandano a quel master. `validated` richiede un verbale indipendente riferito alla versione verificata.
-- Eseguire i controlli pertinenti e rigenerare output da sorgenti riconciliate. Il gate ownership è strutturale, non prova la correttezza dei fatti.
-- Aggiornare changelog, reading-log, navigazione e registro per i file cambiati. Conservare storia e ID. Scratch e backup fuori da autogen-doc.
-- In modalità review non modificare master/output: produrre un verbale separato; fix solo se richiesti, poi nuova review indipendente.
+- Identify the master and its role before editing; no named owners. Derived fields and outputs are never fixed by hand.
+- Keep code, versioned configuration, snapshots and runtime evidence separate. Never publish secrets or personal data.
+- Delegate deep analysis by subdomain, with complete sources and disjoint write files. Review is done by an agent other than the author; if unavailable, leave `in-review` and state the limit.
+- Propagate to previous and following layers, including summaries, JSON, scenarios, questions, aggregates and outputs. For new datasets: entity × field × consumer matrix and value comparison, not just keyword search.
+- The current review status lives only in `_meta/review-status.json`; pages point to that master. `validated` requires an independent report that refers to the verified version.
+- Run the relevant checks and regenerate outputs from reconciled sources. The ownership gate is structural, it does not prove that facts are correct.
+- Update changelog, reading-log, navigation and registry for changed files. Keep history and IDs. Scratch files and backups stay outside autogen-doc.
+- In review mode do not modify masters/outputs: produce a separate report; fix only if requested, then run a new independent review.

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="it">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,35 +9,35 @@
 <body>
   <header>
     <h1>AD Helper</h1>
-    <p class="subtitle">Ricerca read-only su Active Directory</p>
+    <p class="subtitle">Read-only search on Active Directory</p>
   </header>
 
   <nav class="tabs">
-    <button class="tab-btn active" data-tab="users">Utenti</button>
-    <button class="tab-btn" data-tab="groups">Gruppi</button>
+    <button class="tab-btn active" data-tab="users">Users</button>
+    <button class="tab-btn" data-tab="groups">Groups</button>
   </nav>
 
   <main>
     <!-- Users tab -->
     <section id="tab-users" class="tab-panel active">
       <form id="user-search-form" class="search-bar">
-        <input type="text" id="user-search-input" placeholder="Nome, sAMAccountName o email..." autocomplete="off" />
-        <button type="submit">Cerca</button>
+        <input type="text" id="user-search-input" placeholder="Name, sAMAccountName or email..." autocomplete="off" />
+        <button type="submit">Search</button>
       </form>
 
       <div id="user-results-actions" class="results-actions hidden">
-        <a id="user-export-csv" href="#" target="_blank">Esporta CSV</a>
-        <a id="user-export-json" href="#" target="_blank">Esporta JSON</a>
+        <a id="user-export-csv" href="#" target="_blank">Export CSV</a>
+        <a id="user-export-json" href="#" target="_blank">Export JSON</a>
       </div>
 
-      <div id="user-truncated-warning" class="warning hidden">Troppi risultati: elenco troncato, affina la ricerca.</div>
+      <div id="user-truncated-warning" class="warning hidden">Too many results: list truncated, refine your search.</div>
 
       <table id="user-results-table" class="results-table hidden">
         <thead>
           <tr>
-            <th>Utente</th>
+            <th>User</th>
             <th>OU</th>
-            <th>Stato</th>
+            <th>Status</th>
           </tr>
         </thead>
         <tbody></tbody>
@@ -49,22 +49,22 @@
     <!-- Groups tab -->
     <section id="tab-groups" class="tab-panel">
       <form id="group-search-form" class="search-bar">
-        <input type="text" id="group-search-input" placeholder="Nome gruppo..." autocomplete="off" />
-        <button type="submit">Cerca</button>
+        <input type="text" id="group-search-input" placeholder="Group name..." autocomplete="off" />
+        <button type="submit">Search</button>
       </form>
 
       <div id="group-results-actions" class="results-actions hidden">
-        <a id="group-export-csv" href="#" target="_blank">Esporta CSV</a>
-        <a id="group-export-json" href="#" target="_blank">Esporta JSON</a>
+        <a id="group-export-csv" href="#" target="_blank">Export CSV</a>
+        <a id="group-export-json" href="#" target="_blank">Export JSON</a>
       </div>
 
-      <div id="group-truncated-warning" class="warning hidden">Troppi risultati: elenco troncato, affina la ricerca.</div>
+      <div id="group-truncated-warning" class="warning hidden">Too many results: list truncated, refine your search.</div>
 
       <table id="group-results-table" class="results-table hidden">
         <thead>
           <tr>
-            <th>Nome gruppo</th>
-            <th>Descrizione</th>
+            <th>Group name</th>
+            <th>Description</th>
             <th>OU</th>
           </tr>
         </thead>

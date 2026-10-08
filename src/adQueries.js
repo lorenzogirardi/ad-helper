@@ -181,7 +181,7 @@ async function getGroup(client, baseDN, dn) {
       sAMAccountName: info ? info.sAMAccountName : '',
       displayName: info ? info.displayName : '',
       mail: info ? info.mail : '',
-      disabled: info ? info.disabled : null, // null = non risolto (es. gruppo annidato, non utente)
+      disabled: info ? info.disabled : null, // null = unresolved (e.g. nested group, not a user)
     };
   });
 
