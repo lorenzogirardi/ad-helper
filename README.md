@@ -40,9 +40,9 @@ L'app ascolta solo su `127.0.0.1`, quindi accessibile solo dalla macchina dove g
 ## Funzioni
 
 - Ricerca utenti per nome, `sAMAccountName` o email.
-- Dettaglio utente: attributi principali, OU (path leggibile), stato attivo/disabilitato, gruppi di appartenenza.
+- Dettaglio utente: attributi principali, OU (path leggibile), stato attivo/disabilitato, gruppi di appartenenza (incluso il gruppo primario, es. Domain Users, che AD non elenca in `memberOf`).
 - Ricerca gruppi per nome.
-- Dettaglio gruppo: membri (gestisce anche gruppi molto grandi, oltre il limite AD di 1500 membri per risposta, via ranged retrieval).
+- Dettaglio gruppo: membri (gestisce anche gruppi molto grandi, oltre il limite AD di 1500 membri per risposta, via ranged retrieval, e gli utenti che hanno quel gruppo come gruppo primario, es. Domain Users).
 - Export CSV/JSON per liste utenti, liste gruppi, membri gruppo.
 
 ## API
@@ -61,28 +61,4 @@ L'app ascolta solo su `127.0.0.1`, quindi accessibile solo dalla macchina dove g
 npm install
 cp .env.example .env   # e compila
 npm start
-```
-
-## App desktop macOS (DMG)
-
-`electron-app/` contiene un wrapper Electron separato. Non modifica Docker e non gestisce il suo ciclo di vita: Docker deve essere avviato manualmente prima dell'uso.
-
-```bash
-cd electron-app
-npm install
-npm start
-```
-
-Per creare il DMG unsigned:
-
-```bash
-npm run dist
-```
-
-Output: `electron-app/dist/`. Al primo avvio macOS può bloccare l'app non firmata: usare tasto destro → **Apri** (oppure **Privacy e sicurezza → Apri comunque**).
-
-Il wrapper carica `http://127.0.0.1:3080` e verifica `/api/health`. Se Docker non risponde mostra una pagina locale con pulsante **Riprova**. Se la porta host viene cambiata in Compose, impostare l'URL prima di avviare Electron:
-
-```bash
-AD_HELPER_URL=http://127.0.0.1:3081 npm start
 ```
