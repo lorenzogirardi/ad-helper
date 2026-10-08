@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AD Helper</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>AD Helper</h1>
+    <p class="subtitle">Ricerca read-only su Active Directory</p>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab-btn active" data-tab="users">Utenti</button>
+    <button class="tab-btn" data-tab="groups">Gruppi</button>
+  </nav>
+
+  <main>
+    <!-- Users tab -->
+    <section id="tab-users" class="tab-panel active">
+      <form id="user-search-form" class="search-bar">
+        <input type="text" id="user-search-input" placeholder="Nome, sAMAccountName o email..." autocomplete="off" />
+        <button type="submit">Cerca</button>
+      </form>
+
+      <div id="user-results-actions" class="results-actions hidden">
+        <a id="user-export-csv" href="#" target="_blank">Esporta CSV</a>
+        <a id="user-export-json" href="#" target="_blank">Esporta JSON</a>
+      </div>
+
+      <div id="user-truncated-warning" class="warning hidden">Troppi risultati: elenco troncato, affina la ricerca.</div>
+
+      <table id="user-results-table" class="results-table hidden">
+        <thead>
+          <tr>
+            <th>Utente</th>
+            <th>OU</th>
+            <th>Stato</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+
+      <div id="user-detail" class="detail-panel hidden"></div>
+    </section>
+
+    <!-- Groups tab -->
+    <section id="tab-groups" class="tab-panel">
+      <form id="group-search-form" class="search-bar">
+        <input type="text" id="group-search-input" placeholder="Nome gruppo..." autocomplete="off" />
+        <button type="submit">Cerca</button>
+      </form>
+
+      <div id="group-results-actions" class="results-actions hidden">
+        <a id="group-export-csv" href="#" target="_blank">Esporta CSV</a>
+        <a id="group-export-json" href="#" target="_blank">Esporta JSON</a>
+      </div>
+
+      <div id="group-truncated-warning" class="warning hidden">Troppi risultati: elenco troncato, affina la ricerca.</div>
+
+      <table id="group-results-table" class="results-table hidden">
+        <thead>
+          <tr>
+            <th>Nome gruppo</th>
+            <th>Descrizione</th>
+            <th>OU</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+
+      <div id="group-detail" class="detail-panel hidden"></div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

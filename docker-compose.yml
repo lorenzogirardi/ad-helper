@@ -1,0 +1,9 @@
+services:
+  ad-helper:
+    build: .
+    image: ad-helper:latest
+    container_name: ad-helper
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:3080:3000"
+    env_file: .env

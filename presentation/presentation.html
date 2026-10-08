@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentazione AD Helper — Metodo e Applicazione</title>
+    <style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    background: #0a0a0f;
+    color: #e5e7eb;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .slide {
+    width: 100%;
+    min-height: 100vh;
+    padding: 60px 80px;
+    display: flex;
+    flex-direction: column;
+    page-break-after: always;
+    background: #0a0a0f;
+  }
+  @media print {
+    .slide {
+      min-height: 100vh;
+      padding: 40px 60px;
+      background: white;
+      color: black;
+    }
+    body {
+      background: white;
+      color: black;
+    }
+    .slide h1 { color: #111827; }
+    .slide h2 { color: #111827; }
+    .slide code, .slide pre { background: #f3f4f6 !important; color: #374151 !important; }
+    .badge { border-color: #374151 !important; }
+    .architecture-box, .timeline-box { background: #f9fafb !important; border-color: #d1d5db !important; }
+  }
+  .slide-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  h1 {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    letter-spacing: -0.02em;
+    color: #f3f4f6;
+  }
+  h1.center {
+    text-align: center;
+  }
+  h2 {
+    font-size: 36px;
+    font-weight: 600;
+    margin-bottom: 40px;
+    color: #d1d5db;
+    letter-spacing: -0.01em;
+  }
+  h3 {
+    font-size: 22px;
+    font-weight: 600;
+    margin: 32px 0 12px;
+    color: #9ca3af;
+  }
+  p {
+    font-size: 20px;
+    line-height: 1.7;
+    margin-bottom: 20px;
+    color: #9ca3af;
+  }
+  ul {
+    font-size: 18px;
+    line-height: 1.7;
+    margin: 16px 0 32px 24px;
+    color: #9ca3af;
+  }
+  ul li {
+    margin-bottom: 12px;
+  }
+  strong {
+    color: #f3f4f6;
+    font-weight: 600;
+  }
+  .emphasis {
+    color: #60a5fa;
+    font-weight: 600;
+  }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 9999px;
+    border: 1px solid;
+  }
+  .badge-blue { color: #60a5fa; border-color: #3b82f6; }
+  .badge-green { color: #34d399; border-color: #10b981; }
+  .badge-purple { color: #a78bfa; border-color: #8b5cf6; }
+  .badge-orange { color: #fbbf24; border-color: #f59e0b; }
+  code {
+    font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid #1f2937;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 16px;
+    color: #e5e7eb;
+  }
+  pre {
+    font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid #1f2937;
+    padding: 20px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 20px 0;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  pre code {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 15px;
+    color: #9ca3af;
+  }
+  .architecture-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 16px;
+    margin: 32px 0;
+  }
+  .arch-item {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid #1f2937;
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+  }
+  .arch-item h4 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #f3f4f6;
+    margin-bottom: 8px;
+  }
+  .arch-item p {
+    font-size: 14px;
+    color: #9ca3af;
+    margin: 0;
+  }
+  .timeline-box {
+    display: flex;
+    justify-content: space-between;
+    margin: 40px 0;
+    padding: 32px;
+    background: rgba(15, 23, 42, 0.4);
+    border: 1px solid #1f2937;
+    border-radius: 12px;
+  }
+  .timeline-step {
+    flex: 1;
+    text-align: center;
+    position: relative;
+  }
+  .timeline-step:not(:last-child)::after {
+    content: '→';
+    position: absolute;
+    right: -12px;
+    top: 32px;
+    color: #4b5563;
+    font-size: 20px;
+  }
+  .timeline-num {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .timeline-step h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #e5e7eb;
+    margin-bottom: 8px;
+  }
+  .timeline-step p {
+    font-size: 14px;
+    color: #9ca3af;
+    margin: 0;
+  }
+  .diataxis-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin: 32px 0;
+  }
+  .diataxis-item {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid #1f2937;
+    border-radius: 12px;
+    padding: 28px;
+  }
+  .diataxis-item h4 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #f3f4f6;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .diataxis-item p {
+    font-size: 16px;
+    color: #9ca3af;
+    margin: 0;
+  }
+  .meta-layer {
+    background: rgba(15, 23, 42, 0.4);
+    border: 1px solid #1f2937;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 16px 0;
+  }
+  .meta-layer h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #60a5fa;
+    margin-bottom: 8px;
+  }
+  .meta-layer ul {
+    margin: 8px 0 0 20px;
+    font-size: 15px;
+  }
+  .fix-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin: 24px 0;
+  }
+  .fix-item {
+    border-left: 3px solid #3b82f6;
+    padding-left: 20px;
+  }
+  .fix-item h4 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #f3f4f6;
+    margin-bottom: 8px;
+  }
+  .fix-item p {
+    font-size: 16px;
+    color: #9ca3af;
+    margin: 0;
+  }
+  .center {
+    text-align: center;
+  }
+  .subtitle {
+    font-size: 22px;
+    color: #6b7280;
+    margin-bottom: 40px;
+  }
+  .dl {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 8px 20px;
+    margin: 24px 0;
+    font-size: 18px;
+  }
+  .dl dt {
+    color: #9ca3af;
+    font-weight: 500;
+  }
+  .dl dd {
+    color: #e5e7eb;
+    margin: 0;
+  }
+  </style>
+</head>
+<body>
+
+<!-- SLIDE 1: Copertina -->
+<div class="slide">
+  <div class="slide-content">
+    <h1 class="center">AD Helper</h1>
+    <p class="subtitle center">Web UI read-only per Active Directory</p>
+    <div class="center" style="margin-top: 48px;">
+      <span class="badge badge-blue">Contestualizzazione</span>
+      <span class="badge badge-purple">Metodo</span>
+      <span class="badge badge-green">Applicazione</span>
+      <span class="badge badge-orange">Review</span>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 2: Il problema -->
+<div class="slide">
+  <h2>Il problema</h2>
+  <h3>Utente e vincoli</h3>
+  <ul>
+    <li>Active Directory aziendale esistente</li>
+    <li>Mac senza client LDAP comodo</li>
+    <li>Workflow manuale via <code>ldapsearch</code> da terminale</li>
+  </ul>
+  <h3>Requisiti funzionali</h3>
+  <ul>
+    <li>Cercare utenti per nome, <code>sAMAccountName</code>, email</li>
+    <li>Vedere OU path, <code>memberOf</code>, stato attivo/disabilitato</li>
+    <li>Cercare gruppi e membri (gruppi oltre i 1500 membri)</li>
+    <li>Export CSV/JSON</li>
+    <li>Solo lettura, Docker, niente login utente</li>
+  </ul>
+</div>
+
+<!-- SLIDE 3: Stack tecnico -->
+<div class="slide">
+  <h2>Stack tecnico</h2>
+  <div class="architecture-box">
+    <div class="arch-item">
+      <h4>Backend</h4>
+      <p>Node.js 20 + Express 4 + ldapjs 3</p>
+    </div>
+    <div class="arch-item">
+      <h4>Frontend</h4>
+      <p>Vanilla HTML/JS, zero dipendenze</p>
+    </div>
+    <div class="arch-item">
+      <h4>Deploy</h4>
+      <p>Docker Compose, <code>node:20-alpine</code></p>
+    </div>
+    <div class="arch-item">
+      <h4>Auth</h4>
+      <p>Bind LDAP con service account</p>
+    </div>
+  </div>
+  <div class="dl">
+    <dt>Linguaggio</dt><dd>JavaScript (ES2020)</dd>
+    <dt>Porte</dt><dd>host 127.0.0.1:3080 → container 3000</dd>
+    <dt>Persistenza</dt><dd>Stateless, nessuna cache</dd>
+    <dt>Limite AD</dt><dd>Ranged retrieval per attributi >1500 valori</dd>
+  </div>
+</div>
+
+<!-- SLIDE 4: Metodo -->
+<div class="slide">
+  <h2>Metodo: documentation-skill + Diátaxis</h2>
+  <h3>Quadranti</h3>
+  <div class="diataxis-grid">
+    <div class="diataxis-item">
+      <h4><span class="badge badge-blue">Tutorial</span></h4>
+      <p>Learning-oriented: "Primo avvio"</p>
+    </div>
+    <div class="diataxis-item">
+      <h4><span class="badge badge-purple">How-to</span></h4>
+      <p>Task-oriented: "Troubleshooting", "Update"</p>
+    </div>
+    <div class="diataxis-item">
+      <h4><span class="badge badge-green">Reference</span></h4>
+      <p>Information-oriented: architettura, limiti, timeout</p>
+    </div>
+    <div class="diataxis-item">
+      <h4><span class="badge badge-orange">Explanation</span></h4>
+      <p>Understanding-oriented: AD patterns, design choices</p>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 5: Struttura documento -->
+<div class="slide">
+  <h2>Struttura documento</h2>
+  <pre><code>autogen-doc/
+├── README.md
+├── 00-overview/README.md
+├── 01-structure/README.md
+├── 02-architecture/README.md
+├── 03-flussi/README.md
+├── 04-operations/README.md
+├── _meta/
+│   ├── project.json
+│   ├── sources.json
+│   ├── scope.md
+│   ├── open-questions.md
+│   ├── reading-log.md
+│   ├── review-status.json
+│   ├── ownership.json
+│   ├── ownership.md
+│   ├── ownership-catalog.md
+│   └── methodology.md
+├── tools/verify-docs.cjs
+├── CHANGELOG.md
+└── AGENTS.md</code></pre>
+  <p>Ogni layer serve un'audience specifica: overview per orientamento, structure per sviluppatori, architecture per integratori, flows per tester, operations per SRE.</p>
+</div>
+
+<!-- SLIDE 6: Metadati -->
+<div class="slide">
+  <h2>Metadati e governance</h2>
+  <div class="meta-layer">
+    <h4>Sources</h4>
+    <ul>
+      <li><code>src/</code>, <code>public/</code>, Dockerfile, compose, .env.example</li>
+      <li>Runtime test, AD schema observations</li>
+    </ul>
+  </div>
+  <div class="meta-layer">
+    <h4>Ownership</h4>
+    <ul>
+      <li>Ruoli per file (<code>backend</code>, <code>frontend</code>, <code>docs</code>)</li>
+      <li>Registro verificato da <code>verify-docs.cjs</code></li>
+    </ul>
+  </div>
+  <div class="meta-layer">
+    <h4>Review status</h4>
+    <ul>
+      <li>Stato: <code>in-review</code> fino a validazione indipendente</li>
+      <li>Rule: mai auto-validare — review esterno richiesta</li>
+    </ul>
+  </div>
+</div>
+
+<!-- SLIDE 7: Process -->
+<div class="slide">
+  <h2>Processo di documentazione</h2>
+  <div class="timeline-box">
+    <div class="timeline-step">
+      <div class="timeline-num">1</div>
+      <h4>Bootstrap</h4>
+      <p>Skill genera struttura e meta</p>
+    </div>
+    <div class="timeline-step">
+      <div class="timeline-num">2</div>
+      <h4>Authoring</h4>
+      <p>Scrittura layer 0–4</p>
+    </div>
+    <div class="timeline-step">
+      <div class="timeline-num">3</div>
+      <h4>Scan</h4>
+      <p>Rimozione path e dati personali</p>
+    </div>
+    <div class="timeline-step">
+      <div class="timeline-num">4</div>
+      <h4>Verify</h4>
+      <p>Ownership registry check</p>
+    </div>
+    <div class="timeline-step">
+      <div class="timeline-num">5</div>
+      <h4>Review</h4>
+      <p>Agente indipendente</p>
+    </div>
+  </div>
+  <p><strong>Regole applicate:</strong> niente segreti, niente PII, niente path assoluti locale, ownership per ruolo, status solo da review esterna.</p>
+</div>
+
+<!-- SLIDE 8: Review -->
+<div class="slide">
+  <h2>Review indipendente: findings</h2>
+  <div class="fix-grid">
+    <div class="fix-item">
+      <h4>Timeout LDAP errato</h4>
+      <p>Doc diceva default infinito → corretto: <code>timeout: 15000ms</code>, <code>connectTimeout: 10000ms</code></p>
+    </div>
+    <div class="fix-item">
+      <h4>Porta 3080 wording</h4>
+      <p>"PORT override" → corretto: Compose mappa host 127.0.0.1:3080 su container 3000</p>
+    </div>
+    <div class="fix-item">
+      <h4>Dati personali e specifici</h4>
+      <p>Rimossi nomi, domini, gruppi reali, password di esempio → placeholder generici</p>
+    </div>
+    <div class="fix-item">
+      <h4>Diátaxis label</h4>
+      <p>Primo setup → <code>## Tutorial: primo avvio</code></p>
+    </div>
+    <div class="fix-item">
+      <h4>Roadmap in Reference</h4>
+      <p>Sezione "Future" → spostata in <code>open-questions.md</code></p>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 8b: Seconda tornata -->
+<div class="slide">
+  <h2>Review indipendente: seconda tornata</h2>
+  <div class="fix-grid">
+    <div class="fix-item">
+      <h4>Chunk ranged retrieval</h4>
+      <p>Doc diceva range da 1500 → corretto: <code>pageSize = 1000</code>, <code>member;range=0-999</code>, <code>1000-1999</code>, …</p>
+    </div>
+    <div class="fix-item">
+      <h4>Conteggi righe obsoleti</h4>
+      <p>Tabella moduli riallineata a <code>wc -l</code> reale dei sorgenti</p>
+    </div>
+    <div class="fix-item">
+      <h4>Requisito non qualificato</h4>
+      <p>LDAPS in produzione → decisione da confermare (<code>Q-TLS</code>), non requisito implementato</p>
+    </div>
+    <div class="fix-item">
+      <h4>Limite risultati</h4>
+      <p>"default ~1500" → dipende dal server, non imposto dal codice</p>
+    </div>
+  </div>
+  <p><strong>Lezione:</strong> ogni affermazione numerica va verificata contro il sorgente, non contro la memoria del comportamento AD.</p>
+</div>
+
+<!-- SLIDE 9: Tools -->
+<div class="slide">
+  <h2>Tooling</h2>
+  <ul>
+    <li><code>verify-docs.cjs</code>: ownership registry check (PASS 19 file, 8 folder)</li>
+    <li><code>grep -RI</code>: scan path/segreto/personal data</li>
+    <li>Agente indipendente: factual correctness, Diátaxis, privacy</li>
+  </ul>
+  <pre><code>node autogen-doc/tools/verify-docs.cjs --docs autogen-doc --write-catalog
+{
+  "status": "PASS",
+  "files": 19,
+  "folders": 8,
+  "errors": []
+}</code></pre>
+  <pre><code>grep -RInE '&lt;dominio-reale&gt;|&lt;nome-reale&gt;|changeme|/Users/|/home/|C:\\' autogen-doc
+---exit: 1  # zero hits</code></pre>
+</div>
+
+<!-- SLIDE 10: Lesson -->
+<div class="slide">
+  <h2>Cosa abbiamo imparato</h2>
+  <ul>
+    <li><strong>Diátaxis</strong> guida la struttura, evita il "monolite wiki"</li>
+    <li><strong>Meta-layers</strong> rendono la doc manutenibile e verificabile</li>
+    <li><strong>Ownership per ruolo</strong> non per nome — no blame, no rot</li>
+    <li><strong>Review indipendente</strong> è obbligatoria: io scrivo, un altro verifica</li>
+    <li><strong>Privacy by default</strong>: niente nomi, niente domini interni, niente password di esempio</li>
+  </ul>
+</div>
+
+<!-- SLIDE 11: Next -->
+<div class="slide">
+  <h2>Prossimi passi</h2>
+  <ul>
+    <li>Terza review indipendente dopo seconda tornata di fix</li>
+    <li>Se APPROVED: <code>review-status.json → validated</code></li>
+    <li>Considerare LDAPS + cert validation per produzione</li>
+    <li>Valutare cache (Q-CACHE) se ricerche frequenti</li>
+    <li>Testare <code>rangedSearch</code> su gruppo reale con >1500 membri</li>
+  </ul>
+</div>
+
+<!-- SLIDE 12: Fine -->
+<div class="slide">
+  <div class="slide-content">
+    <h1 class="center">Fine</h1>
+    <p class="subtitle center">Documentazione generata con documentation-skill, organizzata secondo Diátaxis, verificata da agente indipendente.</p>
+    <div class="center" style="margin-top: 48px;">
+      <code style="font-size: 14px;">autogen-doc/</code>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "units": [
+    {
+      "id": "overview",
+      "paths": [
+        "00-overview/README.md"
+      ],
+      "status": "in-review",
+      "sourceRevision": "HEAD",
+      "reviewRef": null,
+      "limits": "Analisi single-author; review indipendente non ancora eseguita | 2026-09-30: fix post-review applicati e auto-verificati dall autore (line count, pageSize 1000, Q-TLS, limite risultati, backlog, scan privacy, verifier PASS); tentativi di review indipendente falliti per errore infrastruttura agenti: resta in-review"
+    },
+    {
+      "id": "structure",
+      "paths": [
+        "01-structure/README.md"
+      ],
+      "status": "in-review",
+      "sourceRevision": "HEAD",
+      "reviewRef": null,
+      "limits": "Analisi single-author; review indipendente non ancora eseguita | 2026-09-30: fix post-review applicati e auto-verificati dall autore (line count, pageSize 1000, Q-TLS, limite risultati, backlog, scan privacy, verifier PASS); tentativi di review indipendente falliti per errore infrastruttura agenti: resta in-review"
+    },
+    {
+      "id": "architecture",
+      "paths": [
+        "02-architecture/README.md"
+      ],
+      "status": "in-review",
+      "sourceRevision": "HEAD",
+      "reviewRef": null,
+      "limits": "Analisi single-author; review indipendente non ancora eseguita. Performance batch resolution stimata, non load-tested | 2026-09-30: fix post-review applicati e auto-verificati dall autore (line count, pageSize 1000, Q-TLS, limite risultati, backlog, scan privacy, verifier PASS); tentativi di review indipendente falliti per errore infrastruttura agenti: resta in-review"
+    },
+    {
+      "id": "flows",
+      "paths": [
+        "03-flussi/README.md"
+      ],
+      "status": "in-review",
+      "sourceRevision": "HEAD",
+      "reviewRef": null,
+      "limits": "Analisi single-author; scenari verificati manualmente contro AD reale ma non automatizzati come test suite | 2026-09-30: fix post-review applicati e auto-verificati dall autore (line count, pageSize 1000, Q-TLS, limite risultati, backlog, scan privacy, verifier PASS); tentativi di review indipendente falliti per errore infrastruttura agenti: resta in-review"
+    },
+    {
+      "id": "operations",
+      "paths": [
+        "04-operations/README.md"
+      ],
+      "status": "in-review",
+      "sourceRevision": "HEAD",
+      "reviewRef": null,
+      "limits": "Troubleshooting basato su problemi effettivamente riscontrati durante sviluppo; non copertura esaustiva di tutti i possibili errori LDAP | 2026-09-30: fix post-review applicati e auto-verificati dall autore (line count, pageSize 1000, Q-TLS, limite risultati, backlog, scan privacy, verifier PASS); tentativi di review indipendente falliti per errore infrastruttura agenti: resta in-review"
+    }
+  ]
+}

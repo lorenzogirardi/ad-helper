@@ -1,0 +1,14 @@
+{
+  "name": "ad-helper",
+  "version": "1.0.0",
+  "description": "Read-only web UI to query Active Directory (users, groups, OU, memberships)",
+  "private": true,
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "ldapjs": "^3.0.7"
+  }
+}

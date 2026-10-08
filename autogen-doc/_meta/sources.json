@@ -1,0 +1,44 @@
+{
+  "sources": [
+    {
+      "id": "code-files",
+      "type": "repository",
+      "label": "Source code",
+      "location": "src/",
+      "status": "available",
+      "revision": "HEAD"
+    },
+    {
+      "id": "frontend-files",
+      "type": "repository",
+      "label": "Frontend HTML/JS/CSS",
+      "location": "public/",
+      "status": "available",
+      "revision": "HEAD"
+    },
+    {
+      "id": "config-files",
+      "type": "repository",
+      "label": "Docker + env config",
+      "location": "Dockerfile, docker-compose.yml, .env.example",
+      "status": "available",
+      "revision": "HEAD"
+    },
+    {
+      "id": "ad-observed",
+      "type": "snapshot",
+      "label": "AD schema observations (email format, OU pattern, contractor account suffix -ext)",
+      "location": "Tested against configured directory with example data (140-member group)",
+      "status": "available",
+      "revision": "2026-09-29"
+    },
+    {
+      "id": "runtime-test",
+      "type": "runtime",
+      "label": "Functional verification curl + browser",
+      "location": "local runtime endpoint on configured host port (Compose mapping default: 3080) ",
+      "status": "available",
+      "revision": "2026-09-29"
+    }
+  ]
+}

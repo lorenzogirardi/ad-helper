@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "name": "ad-helper",
+  "skill": {
+    "name": "documentation-skill",
+    "version": "0.1.0"
+  },
+  "codeRoot": "..",
+  "documentationRoot": ".",
+  "bootstrappedAt": "2026-09-29T18:30:30.494Z",
+  "sourceRevision": "HEAD (no git repo — working tree diretta)",
+  "workingTreeState": "not-a-git-repo",
+  "commands": [
+    {
+      "id": "ownership",
+      "command": "node autogen-doc/tools/verify-docs.cjs --docs autogen-doc",
+      "scope": "Registry and catalog only; not semantic validation",
+      "verifiedAt": "2026-09-29",
+      "result": "PASS after ownership.json update"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+.env
+node_modules/
+.DS_Store
+# PDF export embeds local file paths
+presentation/presentation.pdf
